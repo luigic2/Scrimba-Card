@@ -1,4 +1,5 @@
 import React from "react"
+import Star from "./components/Star"
 
 export default function App() {
     const [contact, setContact] = React.useState({
@@ -8,9 +9,9 @@ export default function App() {
         email: "itsmyrealname@example.com",
         isFavorite: false
     })
-    
+     
     /**
-     * Challenge: Move the star image into its own component
+     * Challenge: Move the star image into its own component (Star)
      * - It should receive a prop called `isFilled` that it
      *   uses to determine which icon it will display
      * - Import and render that component, passing the value of
@@ -20,25 +21,25 @@ export default function App() {
      *   `isFavorite` in state above.
      */
     
-    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
     
-    function toggleFavorite() {
+    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+     
+      function toggleFavorite() {
         setContact(prevContact => ({
             ...prevContact,
             isFavorite: !prevContact.isFavorite
         }))
     }
+   
     
     return (
         <main>
             <article className="card">
                 <img src="./images/user.png" className="card--image" />
                 <div className="card--info">
-                    <img 
-                        src={`../images/${starIcon}`} 
-                        className="card--favorite"
-                        onClick={toggleFavorite}
-                    />
+                   
+                    <Star click={toggleFavorite} isFilled={starIcon} />
+                   
                     <h2 className="card--name">
                         {contact.firstName} {contact.lastName}
                     </h2>
